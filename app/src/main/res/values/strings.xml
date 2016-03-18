@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">HelloCoordinatorLayout</string>
+    <string name="app_name">Habit</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="about_us">About Us</string>
 </resources>

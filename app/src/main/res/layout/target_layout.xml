@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <View
+        android:layout_width="18dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#FF666666"
+        android:background="@drawable/lcorner"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rcorner"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/target_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trcorner"
+
+            android:padding="3dp"
+            android:text="Target"/>
+
+        <LinearLayout
+            android:id="@+id/target_dates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:orientation="horizontal"
+            android:layout_weight="1" >
+            <include android:id="@+id/btn1" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn2" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn3" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn4" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn5" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn6" layout="@layout/target_date_button" />
+            <include android:id="@+id/btn7" layout="@layout/target_date_button" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brcorner"
+
+            android:padding="3dp"
+            android:text="bot" />
+
+    </LinearLayout>
+
+</LinearLayout>
