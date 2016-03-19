@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.habit.devhabit.HabitView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:elevation="20dp"
     android:orientation="horizontal">
 
     <View
         android:layout_width="18dp"
         android:layout_height="150dp"
+
         android:background="@drawable/lcorner"
-        android:backgroundTint="#FF666666" />
+        android:backgroundTint="#ff303030" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,12 +21,12 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/target_title"
+            android:id="@+id/target_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/target_title_text"
+                android:id="@+id/target_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center"
@@ -78,6 +81,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:orientation="horizontal">
 
             <TextView
@@ -99,6 +103,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:orientation="horizontal">
 
             <TextView
@@ -119,4 +124,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</com.habit.devhabit.HabitView>

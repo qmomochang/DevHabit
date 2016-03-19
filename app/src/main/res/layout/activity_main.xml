@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
      
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="20dp"
-        android:background="@drawable/corner"
-        android:orientation="vertical"
-        android:layout_margin="15dp">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/target_layout" />
+        <LinearLayout
+            android:id="@+id/habit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
