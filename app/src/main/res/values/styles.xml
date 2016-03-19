@@ -4,5 +4,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
-
+    <style name="InputEditBoxStyle">
+        <item name="android:layout_margin">@dimen/input_edit_box_margin</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="android:textSize">@dimen/input_font_size</item>
+    </style>
 </resources>

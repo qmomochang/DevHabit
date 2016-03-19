@@ -7,12 +7,26 @@
     <string name="max_connected_days_now">Max lasted days for now : </string>
     <string name="max_connected_days_ever">Max lasted days ever : </string>
 
+    <string name="habit_form">Create a new habit</string>
     <string name="habit_form_name">Habit name</string>
     <string name="habit_form_description">Habit description</string>
     <string name="habit_form_reasons">Habit reasons</string>
     <string name="habit_form_start_date">Start date</string>
     <string name="habit_form_schedule">Schedule</string>
 
+    <string name="hint_input_target_name">Give the habit a name</string>
+    <string name="hint_input_target_desc">Give the habit a description</string>
+    <string name="hint_input_target_reasons">Give the habit reasons</string>
+    <string name="hint_input_target_start_date">Give the habit a start date ex: 2016-04-01</string>
+    <string name="hint_input_target_schedule">Give the habit a schedule</string>
 
+    <string name="target_menu_modify">Modify</string>
 
+    <string name="target_dialog_content_modified_title">Content modified</string>
+    <string name="target_dialog_content_modified_content">The content has been modified, save before leave?</string>
+    <string name="save">Save</string>
+    <string name="leave_without_saving">Keep leaving</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
