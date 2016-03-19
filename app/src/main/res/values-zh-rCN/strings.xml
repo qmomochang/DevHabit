@@ -6,13 +6,4 @@
     <string name="about_us">About Us</string>
     <string name="max_connected_days_now">Max lasted days for now : </string>
     <string name="max_connected_days_ever">Max lasted days ever : </string>
-
-    <string name="habit_form_name">Habit name</string>
-    <string name="habit_form_description">Habit description</string>
-    <string name="habit_form_reasons">Habit reasons</string>
-    <string name="habit_form_start_date">Start date</string>
-    <string name="habit_form_schedule">Schedule</string>
-
-
-
 </resources>

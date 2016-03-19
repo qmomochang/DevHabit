@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Habit</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">設定</string>
+    <string name="about_us">關於我們</string>
+    <string name="max_connected_days_now">目前持續 : </string>
+    <string name="max_connected_days_ever">最久持續 : </string>
+</resources>
