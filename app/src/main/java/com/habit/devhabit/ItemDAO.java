@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ItemDAO {
 
-    public static final String KEY_ID = "_id";
+    public static final String KEY_ID = "entry_id";
 
     public static final String TABLE_NAME = "habit_record";
     public static final String COLUMN_NAME_HABIT_ID = "entry_id";
@@ -148,6 +148,17 @@ public class ItemDAO {
         }
 
         return result;
+    }
+
+    public Item getLast() {
+        Cursor cursor = db.query(
+                TABLE_NAME, null, null, null, null, null, null, null);
+
+        cursor.moveToLast();
+        Item item = getRecord(cursor);
+
+        cursor.close();
+        return item;
     }
 
     public void sample() {
