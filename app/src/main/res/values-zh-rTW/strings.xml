@@ -6,4 +6,36 @@
     <string name="about_us">關於我們</string>
     <string name="max_connected_days_now">目前持續 : </string>
     <string name="max_connected_days_ever">最久持續 : </string>
+
+    <string name="habit_form">養成一個新習慣</string>
+    <string name="habit_form_name">那種習慣</string>
+    <string name="habit_form_description">描述習慣</string>
+    <string name="habit_form_reasons">為什麼要養成這個習慣</string>
+    <string name="habit_form_start_date">開始日期</string>
+    <string name="habit_form_schedule">習慣排程</string>
+
+    <string name="hint_input_target_name">給習慣一個名字</string>
+    <string name="hint_input_target_desc">描述一下這個習慣</string>
+    <string name="hint_input_target_reasons">想要養成這個習慣的原因</string>
+    <string name="hint_input_target_start_date">開始養成這個習慣的日期 ex: 2016-04-01</string>
+    <string name="hint_input_target_schedule">設定這個習慣的排程模式</string>
+
+    <string name="target_menu_modify">修改</string>
+    <string name="target_menu_delete">刪除</string>
+
+    <string name="target_dialog_content_modified_title">內容已修改</string>
+    <string name="target_dialog_content_modified_content">內容改經被修改, 離開前先儲存 ?</string>
+    <string name="save">儲存</string>
+    <string name="leave_without_saving">不儲存</string>
+    <string name="cancel">取消</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+
+    <string name="monday">一</string>
+    <string name="tuesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+    <string name="sunday">日</string>
 </resources>

@@ -21,6 +21,7 @@
     <string name="hint_input_target_schedule">Give the habit a schedule</string>
 
     <string name="target_menu_modify">Modify</string>
+    <string name="target_menu_delete">Delete</string>
 
     <string name="target_dialog_content_modified_title">Content modified</string>
     <string name="target_dialog_content_modified_content">The content has been modified, save before leave?</string>
@@ -29,4 +30,13 @@
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="error">Error</string>
+
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="sunday">Sun</string>
 </resources>
