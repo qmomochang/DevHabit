@@ -58,6 +58,12 @@ public class TargetController {
             View v = mHabitContainer.getChildAt(i-1);
             if (v instanceof HabitView) {
                 ((HabitView) v).setupView((ViewGroup) v, item);
+                ((HabitView)v).setListener(new HabitView.DateStatusListener() {
+                    @Override
+                    public void onDateStatusChanged() {
+                        //mItemDAO.update(((HabitView)v).getItem().getHash());
+                    }
+                });
             }
         }
 

@@ -1,5 +1,7 @@
 package com.habit.devhabit;
 
+import java.util.HashMap;
+
 /**
  * Created by qmo-i7 on 2016/3/19.
  */
@@ -14,10 +16,11 @@ public class Item implements java.io.Serializable {
 
     private String mStartDate;
     private String mSchedule;
-
+    private HashMap mHash;
     public Item() {
         mTitle = "";
         mDescription = "";
+        mHash = new HashMap();
     }
 
     public Item(String title, String desc, String reason1, String reason2, String reason3, String startDate, String schedule) {
@@ -28,6 +31,7 @@ public class Item implements java.io.Serializable {
         mReason3 = reason3;
         mStartDate = startDate;
         mSchedule = schedule;
+        mHash = new HashMap();
     }
 
     public long getId() {
@@ -92,5 +96,9 @@ public class Item implements java.io.Serializable {
 
     public void setSchedule(String schedule) {
         mSchedule = schedule;
+    }
+
+    public HashMap getHash() {
+        return mHash;
     }
 }

@@ -20,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/day_of_week"
-        android:background="@drawable/corner"
-        android:backgroundTint="#FF0088FF" />
+        android:textColor="@color/white"
+        android:background="@drawable/round_button"
+         />
 
 </RelativeLayout>

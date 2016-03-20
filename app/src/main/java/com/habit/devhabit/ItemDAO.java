@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by qmo-i7 on 2016/3/19.
@@ -24,9 +28,11 @@ public class ItemDAO {
     public static final String COLUMN_HABIT_REASON3 = "reason3";
     public static final String COLUMN_HABIT_START_DATE = "start_date";
     public static final String COLUMN_HABIT_SCHEDULE = "schedule";
+    public static final String COLUMN_HABIT_DATE_STATUS = "date_status";
 
     public static final String TEXT_TYPE = " TEXT";
     public static final String COMMA_SEP = ",";
+    public static final String BLOB = "BLOB";
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_NAME_HABIT_ID + " INTEGER PRIMARY KEY," +
@@ -36,7 +42,8 @@ public class ItemDAO {
                     COLUMN_HABIT_REASON2 + TEXT_TYPE + COMMA_SEP +
                     COLUMN_HABIT_REASON3 + TEXT_TYPE + COMMA_SEP +
                     COLUMN_HABIT_START_DATE + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_HABIT_SCHEDULE + TEXT_TYPE +
+                    COLUMN_HABIT_SCHEDULE + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_HABIT_DATE_STATUS + BLOB +
                     " )";
 
     // 資料庫物件
@@ -54,15 +61,26 @@ public class ItemDAO {
 
     public Item insert(Item item) {
         ContentValues cv = new ContentValues();
+        try {
+            cv.put(COLUMN_HABIT_TITLE, item.getTitle());
+            cv.put(COLUMN_HABIT_DESC, item.getDescription());
+            cv.put(COLUMN_HABIT_REASON1, item.getReason1());
+            cv.put(COLUMN_HABIT_REASON2, item.getReason2());
+            cv.put(COLUMN_HABIT_REASON3, item.getReason3());
+            cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
+            cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
+            cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
 
-        cv.put(COLUMN_HABIT_TITLE, item.getTitle());
-        cv.put(COLUMN_HABIT_DESC, item.getDescription());
-        cv.put(COLUMN_HABIT_REASON1, item.getReason1());
-        cv.put(COLUMN_HABIT_REASON2, item.getReason2());
-        cv.put(COLUMN_HABIT_REASON3, item.getReason3());
-        cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
-        cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
-
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(baos);
+            out.writeObject(item.getHash());
+            byte[] bytes = baos.toByteArray();
+            out.close();
+            baos.close();
+            cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
+        } catch (Exception e) {
+            android.util.Log.v("ItemDAO", "e = " + e);
+        }
         long id = db.insert(TABLE_NAME, null, cv);
         item.setId(id);
         return item;
@@ -71,21 +89,32 @@ public class ItemDAO {
     public boolean update(Item item) {
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_HABIT_TITLE, item.getTitle());
-        cv.put(COLUMN_HABIT_DESC, item.getDescription());
-        cv.put(COLUMN_HABIT_REASON1, item.getReason1());
-        cv.put(COLUMN_HABIT_REASON2, item.getReason2());
-        cv.put(COLUMN_HABIT_REASON3, item.getReason3());
-        cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
-        cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
+        try {
+            cv.put(COLUMN_HABIT_TITLE, item.getTitle());
+            cv.put(COLUMN_HABIT_DESC, item.getDescription());
+            cv.put(COLUMN_HABIT_REASON1, item.getReason1());
+            cv.put(COLUMN_HABIT_REASON2, item.getReason2());
+            cv.put(COLUMN_HABIT_REASON3, item.getReason3());
+            cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
+            cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
 
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(baos);
+            out.writeObject(item.getHash());
+            byte[] bytes = baos.toByteArray();
+            out.close();
+            baos.close();
+            cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
+        } catch (Exception e) {
+            android.util.Log.v("ItemDAO", "e = " + e);
+        }
         String where = KEY_ID + "=" + item.getId();
         return db.update(TABLE_NAME, cv, where, null) > 0;
     }
 
     public boolean delete(long id) {
         String where = KEY_ID + "=" + id;
-        return db.delete(TABLE_NAME, where , null) > 0;
+        return db.delete(TABLE_NAME, where, null) > 0;
     }
 
     public List<Item> getAll() {
@@ -163,8 +192,8 @@ public class ItemDAO {
 
     public void sample() {
         Item item = new Item("ReadEng", "ReadEng", "to improve my english", "", "", "2016-04-01", "");
-        Item item2 = new Item("Dance",   "2", "r2", "", "", "2016-04-01", "everyday");
-        Item item3 = new Item("Sing",    "3", "r3", "", "", "2016-04-01", "every 2 day");
+        Item item2 = new Item("Dance", "2", "r2", "", "", "2016-04-01", "everyday");
+        Item item3 = new Item("Sing", "3", "r3", "", "", "2016-04-01", "every 2 day");
         Item item4 = new Item("Workout", "4", "r4", "", "", "2016-04-01", "");
 
         insert(item);
