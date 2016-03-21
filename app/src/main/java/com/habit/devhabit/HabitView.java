@@ -1,6 +1,5 @@
 package com.habit.devhabit;
 
-import android.app.Activity;
 import android.content.Context;
 
 import android.graphics.Color;
@@ -96,15 +95,28 @@ public class HabitView extends LinearLayout {
         int[] arr = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7};
         for (int i = 0; i < 7; i++) {
             int startDay = c.get(Calendar.DAY_OF_WEEK);
+<<<<<<< Updated upstream
             String dayString = convertDayOfWeekToString(startDay + i);
             String date = Integer.toString(c.get(Calendar.DAY_OF_MONTH) + i);
             setupButtonDayText(container, arr[i], dayString, date);
+=======
+            int shiftDateToSunday = startDay - 1;
+
+            String dayString = convertDayOfWeekToString(startDay + i - shiftDateToSunday);
+            String day_of_month = Integer.toString(c.get(Calendar.DAY_OF_MONTH) + i - shiftDateToSunday);
+            String day_of_year = Integer.toString(c.get(Calendar.DAY_OF_YEAR) + i - shiftDateToSunday);
+            setupButtonDayText(container, arr[i], dayString, day_of_month, day_of_year);
+>>>>>>> Stashed changes
             setupButtonListener(container, arr[i]);
 
         }
     }
 
+<<<<<<< Updated upstream
     private void setupButtonDayText(ViewGroup vg, int resId, String day_of_week, String date) {
+=======
+    private void setupButtonDayText(ViewGroup vg, int resId, String day_of_week, String day_of_month, String day_of_year) {
+>>>>>>> Stashed changes
         ViewGroup vg1 = (ViewGroup) vg.findViewById(resId);
         if (vg1 != null) {
             TextView tv = (TextView) vg1.findViewById(R.id.day_of_week);
@@ -113,9 +125,17 @@ public class HabitView extends LinearLayout {
             }
             Button btn = (Button) vg1.findViewById(R.id.date_btn);
             if (btn != null) {
+<<<<<<< Updated upstream
                 btn.setText(date);
                 if (mItem.getHash() != null && mItem.getHash().get(date) != null ) {
                     switch ((int)mItem.getHash().get(date)) {
+=======
+                btn.setText(day_of_month);
+                btn.setTag(day_of_year);
+                if (mItem.getHash() != null && mItem.getHash().get(day_of_year) != null) {
+                    android.util.Log.v("MCLOG", "hash.get(" + day_of_year + ") = " + (int) mItem.getHash().get(day_of_year));
+                    switch ((int) mItem.getHash().get(day_of_year)) {
+>>>>>>> Stashed changes
                         case 1:
                             btn.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
                             break;
@@ -126,8 +146,16 @@ public class HabitView extends LinearLayout {
                             btn.getBackground().setColorFilter(Color.parseColor("#FF0000FF"), android.graphics.PorterDuff.Mode.MULTIPLY);
                             break;
                         default:
+<<<<<<< Updated upstream
                             break;
                     }
+=======
+
+                            break;
+                    }
+                } else {
+                    btn.getBackground().setColorFilter(null);
+>>>>>>> Stashed changes
                 }
             }
         }
@@ -174,26 +202,51 @@ public class HabitView extends LinearLayout {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Object status = v.getTag();
-                    if (status == null) {
-                        status = (Object) 1;
+                    Object obj = v.getTag();
+                    String dayOfYear;
+                    if (obj == null) {
+                        dayOfYear = "0";
+                    } else {
+                        dayOfYear = (String)obj;
                     }
+<<<<<<< Updated upstream
                     Calendar c = Calendar.getInstance();
                     int dayOfYear = c.get(Calendar.DAY_OF_YEAR);
                     switch ((int) status) {
                         case 1: // done, green
                             v.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
                             v.setTag((Object) 2);
+=======
+
+                    Object objStatus = mItem.getHash().get(dayOfYear);
+                    int status;
+                    if (objStatus == null) {
+                        status = 0;
+                    } else {
+                        status = (int) objStatus;
+                    }
+                    switch (status) {
+                        case 0: // never used
+                            v.getBackground().setColorFilter(null);
+                            mItem.getHash().put(dayOfYear, 1);
+                            break;
+                        case 1: // done, green
+                            v.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
+>>>>>>> Stashed changes
                             mItem.getHash().put(dayOfYear, 2);
                             break;
                         case 2: // fail, red
                             v.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), android.graphics.PorterDuff.Mode.MULTIPLY);
+<<<<<<< Updated upstream
                             v.setTag((Object) 3);
+=======
+>>>>>>> Stashed changes
                             mItem.getHash().put(dayOfYear, 3);
                             break;
 
                         case 3: // skip, blue
                             v.getBackground().setColorFilter(Color.parseColor("#FF0000FF"), android.graphics.PorterDuff.Mode.MULTIPLY);
+<<<<<<< Updated upstream
                             v.setTag((Object) 1);
                             mItem.getHash().put(dayOfYear, 1);
                             break;
@@ -201,6 +254,16 @@ public class HabitView extends LinearLayout {
                     if (mListener != null) {
                         mListener.onDateStatusChanged();
                     }
+=======
+                            mItem.getHash().put(dayOfYear, 1);
+                            break;
+                        default:
+                            v.getBackground().setColorFilter(null);
+                            break;
+                    }
+                    ItemDAO itemDAO = new ItemDAO(mContext);
+                    itemDAO.update(mItem);
+>>>>>>> Stashed changes
                 }
             });
         }
@@ -209,9 +272,12 @@ public class HabitView extends LinearLayout {
     public Item getItem() {
         return mItem;
     }
+<<<<<<< Updated upstream
     public void setListener(DateStatusListener listener) {
         mListener = listener;
     }
+=======
+>>>>>>> Stashed changes
 
     public interface DateStatusListener {
         void onDateStatusChanged();

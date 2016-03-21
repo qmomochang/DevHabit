@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by qmo-i7 on 2016/3/19.
  */
 public class HabitReaderDbHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "HabitReader.db";
     private static SQLiteDatabase mDatabase;
 
@@ -34,7 +34,7 @@ public class HabitReaderDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldversion, int newversion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + ItemDAO.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ItemDAO.TABLE_NAME);
         onCreate(db);
     }
 }

@@ -5,10 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+<<<<<<< Updated upstream
 import java.io.ByteArrayOutputStream;
+=======
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+>>>>>>> Stashed changes
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Exchanger;
 
@@ -32,7 +39,11 @@ public class ItemDAO {
 
     public static final String TEXT_TYPE = " TEXT";
     public static final String COMMA_SEP = ",";
+<<<<<<< Updated upstream
     public static final String BLOB = "BLOB";
+=======
+    public static final String BLOB = " BLOB";
+>>>>>>> Stashed changes
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_NAME_HABIT_ID + " INTEGER PRIMARY KEY," +
@@ -69,7 +80,10 @@ public class ItemDAO {
             cv.put(COLUMN_HABIT_REASON3, item.getReason3());
             cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
             cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
+<<<<<<< Updated upstream
             cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
+=======
+>>>>>>> Stashed changes
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(baos);
@@ -78,6 +92,10 @@ public class ItemDAO {
             out.close();
             baos.close();
             cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         } catch (Exception e) {
             android.util.Log.v("ItemDAO", "e = " + e);
         }
@@ -105,6 +123,10 @@ public class ItemDAO {
             out.close();
             baos.close();
             cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         } catch (Exception e) {
             android.util.Log.v("ItemDAO", "e = " + e);
         }
@@ -155,15 +177,25 @@ public class ItemDAO {
         // 準備回傳結果用的物件
         Item result = new Item();
 
-        result.setId(cursor.getLong(0));
-        result.setTitle(cursor.getString(1));
-        result.setDescription(cursor.getString(2));
-        result.setReason1(cursor.getString(3));
-        result.setReason2(cursor.getString(4));
-        result.setReason3(cursor.getString(5));
-        result.setStartDate(cursor.getString(6));
-        result.setSchedule(cursor.getString(7));
+        try {
+            result.setId(cursor.getLong(0));
+            result.setTitle(cursor.getString(1));
+            result.setDescription(cursor.getString(2));
+            result.setReason1(cursor.getString(3));
+            result.setReason2(cursor.getString(4));
+            result.setReason3(cursor.getString(5));
+            result.setStartDate(cursor.getString(6));
+            result.setSchedule(cursor.getString(7));
 
+            byte[] bytes = cursor.getBlob(8);
+            ByteArrayInputStream baos = new ByteArrayInputStream(bytes);
+            ObjectInputStream in = new ObjectInputStream(baos);
+            result.setHash((HashMap)in.readObject());
+            in.close();
+            baos.close();
+        } catch (Exception e) {
+            android.util.Log.v("MCLOG", "e = " + e);
+        }
         // 回傳結果
         return result;
     }

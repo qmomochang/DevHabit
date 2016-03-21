@@ -17,6 +17,10 @@ public class Item implements java.io.Serializable {
     private String mStartDate;
     private String mSchedule;
     private HashMap mHash;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public Item() {
         mTitle = "";
         mDescription = "";
@@ -101,4 +105,11 @@ public class Item implements java.io.Serializable {
     public HashMap getHash() {
         return mHash;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void setHash(HashMap hash) {
+        mHash.putAll(hash);
+    }
+>>>>>>> Stashed changes
 }
