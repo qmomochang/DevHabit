@@ -6,7 +6,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/event_calendar"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

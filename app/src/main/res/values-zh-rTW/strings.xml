@@ -1,22 +1,22 @@
 <resources>
-    <string name="app_name">Habit</string>
+    <string name="app_name">習慣養成</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">設定</string>
     <string name="about_us">關於我們</string>
-    <string name="max_connected_days_now">目前持續 : </string>
+    <string name="max_connected_days_now">已完成日數 : </string>
     <string name="max_connected_days_ever">最久持續 : </string>
 
-    <string name="habit_form">養成一個新習慣</string>
-    <string name="habit_form_name">那種習慣</string>
+    <string name="habit_form">開始一個新習慣</string>
+    <string name="habit_form_name">習慣名稱</string>
     <string name="habit_form_description">描述習慣</string>
     <string name="habit_form_reasons">為什麼要養成這個習慣</string>
     <string name="habit_form_start_date">開始日期</string>
-    <string name="habit_form_schedule">習慣排程</string>
+    <string name="habit_form_schedule">習慣排程 ex : 每天、每周 x 天</string>
 
-    <string name="hint_input_target_name">給習慣一個名字</string>
+    <string name="hint_input_target_name">給習慣一個名字  ex : 慢跑</string>
     <string name="hint_input_target_desc">描述一下這個習慣</string>
-    <string name="hint_input_target_reasons">想要養成這個習慣的原因</string>
+    <string name="hint_input_target_reasons">想要養成這個習慣的原因  ex : 健康 </string>
     <string name="hint_input_target_start_date">開始養成這個習慣的日期 ex: 2016-04-01</string>
     <string name="hint_input_target_schedule">設定這個習慣的排程模式</string>
 

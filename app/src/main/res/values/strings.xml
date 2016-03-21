@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="about_us">About Us</string>
-    <string name="max_connected_days_now">Max lasted days for now : </string>
+    <string name="max_connected_days_now">Accomplished days : </string>
     <string name="max_connected_days_ever">Max lasted days ever : </string>
 
     <string name="habit_form">Create a new habit</string>

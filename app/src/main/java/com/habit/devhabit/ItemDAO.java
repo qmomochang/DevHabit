@@ -5,19 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-<<<<<<< Updated upstream
-import java.io.ByteArrayOutputStream;
-=======
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
->>>>>>> Stashed changes
+
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Exchanger;
 
 /**
  * Created by qmo-i7 on 2016/3/19.
@@ -39,11 +35,8 @@ public class ItemDAO {
 
     public static final String TEXT_TYPE = " TEXT";
     public static final String COMMA_SEP = ",";
-<<<<<<< Updated upstream
-    public static final String BLOB = "BLOB";
-=======
     public static final String BLOB = " BLOB";
->>>>>>> Stashed changes
+
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_NAME_HABIT_ID + " INTEGER PRIMARY KEY," +
@@ -80,10 +73,6 @@ public class ItemDAO {
             cv.put(COLUMN_HABIT_REASON3, item.getReason3());
             cv.put(COLUMN_HABIT_START_DATE, item.getStartDate());
             cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
-<<<<<<< Updated upstream
-            cv.put(COLUMN_HABIT_SCHEDULE, item.getSchedule());
-=======
->>>>>>> Stashed changes
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(baos);
@@ -92,10 +81,7 @@ public class ItemDAO {
             out.close();
             baos.close();
             cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         } catch (Exception e) {
             android.util.Log.v("ItemDAO", "e = " + e);
         }
@@ -123,10 +109,7 @@ public class ItemDAO {
             out.close();
             baos.close();
             cv.put(COLUMN_HABIT_DATE_STATUS, bytes);
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         } catch (Exception e) {
             android.util.Log.v("ItemDAO", "e = " + e);
         }
@@ -223,10 +206,10 @@ public class ItemDAO {
     }
 
     public void sample() {
-        Item item = new Item("ReadEng", "ReadEng", "to improve my english", "", "", "2016-04-01", "");
-        Item item2 = new Item("Dance", "2", "r2", "", "", "2016-04-01", "everyday");
-        Item item3 = new Item("Sing", "3", "r3", "", "", "2016-04-01", "every 2 day");
-        Item item4 = new Item("Workout", "4", "r4", "", "", "2016-04-01", "");
+        Item item = new Item("背單字", "ReadEng", "to improve my english", "", "", "2016-04-01", "");
+        Item item2 = new Item("慢跑", "運動", "健康", "", "", "2016-04-01", "everyday");
+        Item item3 = new Item("跳舞", "3", "r3", "", "", "2016-04-01", "every 2 day");
+        Item item4 = new Item("重訓", "4", "r4", "", "", "2016-04-01", "");
 
         insert(item);
         insert(item2);

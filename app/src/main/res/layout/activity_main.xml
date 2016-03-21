@@ -1,9 +1,9 @@
 <!--?xml version="1.0" encoding="utf-8"?-->
-<android.support.design.widget.CoordinatorLayout
-    android:id="@+id/rootView"
+<android.support.design.widget.CoordinatorLayout android:id="@+id/rootView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
      
 
     <ScrollView
@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_done">
+        android:src="@drawable/ic_suggestions_add"
+        app:backgroundTint="@color/green1" >
          
     </android.support.design.widget.FloatingActionButton>
 </android.support.design.widget.CoordinatorLayout>

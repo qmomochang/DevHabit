@@ -3,6 +3,7 @@ package com.habit.devhabit;
 import android.content.Context;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by qmo-i7 on 2016/3/19.
@@ -26,9 +28,10 @@ import java.util.HashMap;
 public class HabitView extends LinearLayout {
     Context mContext;
     Item mItem;
+    ViewGroup mContainer;
     PopupMenu mTargetPopupMenu;
+    int mAccomplishedDays = 0;
 
-    DateStatusListener mListener;
     public HabitView(Context context) {
         super(context);
         mContext = context;
@@ -46,12 +49,13 @@ public class HabitView extends LinearLayout {
 
     public void setupView(ViewGroup vg, Item item) {
         mItem = item;
-
+        mContainer = vg;
         setupHabitView(vg, item);
         setupHabitViewMenu(vg);
     }
 
     private void setupHabitViewMenu(ViewGroup container) {
+
         // set listener
         ImageButton mTargetTitleButton = (ImageButton) container.findViewById(R.id.target_title_btn);
         if (mTargetTitleButton != null) {
@@ -95,28 +99,27 @@ public class HabitView extends LinearLayout {
         int[] arr = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7};
         for (int i = 0; i < 7; i++) {
             int startDay = c.get(Calendar.DAY_OF_WEEK);
-<<<<<<< Updated upstream
-            String dayString = convertDayOfWeekToString(startDay + i);
-            String date = Integer.toString(c.get(Calendar.DAY_OF_MONTH) + i);
-            setupButtonDayText(container, arr[i], dayString, date);
-=======
             int shiftDateToSunday = startDay - 1;
 
             String dayString = convertDayOfWeekToString(startDay + i - shiftDateToSunday);
             String day_of_month = Integer.toString(c.get(Calendar.DAY_OF_MONTH) + i - shiftDateToSunday);
             String day_of_year = Integer.toString(c.get(Calendar.DAY_OF_YEAR) + i - shiftDateToSunday);
             setupButtonDayText(container, arr[i], dayString, day_of_month, day_of_year);
->>>>>>> Stashed changes
             setupButtonListener(container, arr[i]);
-
         }
+
+        //
+        Iterator it = mItem.getHash().entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap.Entry pair = (HashMap.Entry)it.next();
+            if (pair.getValue() == 2 || pair.getValue().equals("2") || pair.getValue().equals(2)) {
+                mAccomplishedDays++;
+            }
+        }
+        updateViewAccomplishedDays();
     }
 
-<<<<<<< Updated upstream
-    private void setupButtonDayText(ViewGroup vg, int resId, String day_of_week, String date) {
-=======
     private void setupButtonDayText(ViewGroup vg, int resId, String day_of_week, String day_of_month, String day_of_year) {
->>>>>>> Stashed changes
         ViewGroup vg1 = (ViewGroup) vg.findViewById(resId);
         if (vg1 != null) {
             TextView tv = (TextView) vg1.findViewById(R.id.day_of_week);
@@ -124,38 +127,37 @@ public class HabitView extends LinearLayout {
                 tv.setText(day_of_week);
             }
             Button btn = (Button) vg1.findViewById(R.id.date_btn);
+
             if (btn != null) {
-<<<<<<< Updated upstream
-                btn.setText(date);
-                if (mItem.getHash() != null && mItem.getHash().get(date) != null ) {
-                    switch ((int)mItem.getHash().get(date)) {
-=======
                 btn.setText(day_of_month);
                 btn.setTag(day_of_year);
                 if (mItem.getHash() != null && mItem.getHash().get(day_of_year) != null) {
                     android.util.Log.v("MCLOG", "hash.get(" + day_of_year + ") = " + (int) mItem.getHash().get(day_of_year));
                     switch ((int) mItem.getHash().get(day_of_year)) {
->>>>>>> Stashed changes
-                        case 1:
-                            btn.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
+                        case 0: // nothing
+                            btn.setTextColor(Color.parseColor("#FF000000"));
+                            btn.getBackground().setAlpha(0);
                             break;
-                        case 2:
-                            btn.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), android.graphics.PorterDuff.Mode.MULTIPLY);
-                            break;
-                        case 3:
-                            btn.getBackground().setColorFilter(Color.parseColor("#FF0000FF"), android.graphics.PorterDuff.Mode.MULTIPLY);
-                            break;
-                        default:
-<<<<<<< Updated upstream
-                            break;
-                    }
-=======
 
+                        case 1: // done
+                            btn.setTextColor(Color.parseColor("#FFFFFFFF"));
+                            btn.getBackground().setColorFilter(Color.parseColor("#FF00AA00"), PorterDuff.Mode.DST_IN);
+                            break;
+
+                        case 2: // failed
+                            btn.setTextColor(Color.parseColor("#FFFFFFFF"));
+                            btn.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), android.graphics.PorterDuff.Mode.DST_IN);
+                            break;
+
+                        default:
+                            btn.setTextColor(Color.parseColor("#FF000000"));
+                            btn.getBackground().setAlpha(0);
                             break;
                     }
+                    updateViewAccomplishedDays();
                 } else {
-                    btn.getBackground().setColorFilter(null);
->>>>>>> Stashed changes
+                    btn.setTextColor(Color.parseColor("#FF000000"));
+                    btn.getBackground().setAlpha(0);
                 }
             }
         }
@@ -198,7 +200,8 @@ public class HabitView extends LinearLayout {
         ViewGroup vg1 = (ViewGroup) vg.findViewById(resId);
 
         if (vg1 != null) {
-            Button btn = (Button) vg1.findViewById(R.id.date_btn);
+            final Button btn = (Button) vg1.findViewById(R.id.date_btn);
+
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -207,17 +210,8 @@ public class HabitView extends LinearLayout {
                     if (obj == null) {
                         dayOfYear = "0";
                     } else {
-                        dayOfYear = (String)obj;
+                        dayOfYear = (String) obj;
                     }
-<<<<<<< Updated upstream
-                    Calendar c = Calendar.getInstance();
-                    int dayOfYear = c.get(Calendar.DAY_OF_YEAR);
-                    switch ((int) status) {
-                        case 1: // done, green
-                            v.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
-                            v.setTag((Object) 2);
-=======
-
                     Object objStatus = mItem.getHash().get(dayOfYear);
                     int status;
                     if (objStatus == null) {
@@ -227,43 +221,38 @@ public class HabitView extends LinearLayout {
                     }
                     switch (status) {
                         case 0: // never used
-                            v.getBackground().setColorFilter(null);
-                            mItem.getHash().put(dayOfYear, 1);
-                            break;
-                        case 1: // done, green
-                            v.getBackground().setColorFilter(Color.parseColor("#FF00FF00"), android.graphics.PorterDuff.Mode.MULTIPLY);
->>>>>>> Stashed changes
+                            v.getBackground().setAlpha(255);
+                            btn.setTextColor(Color.parseColor("#FFFFFFFF"));
+                            v.getBackground().setColorFilter(Color.parseColor("#FF00AA00"), PorterDuff.Mode.SRC_IN);
                             mItem.getHash().put(dayOfYear, 2);
-                            break;
-                        case 2: // fail, red
-                            v.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), android.graphics.PorterDuff.Mode.MULTIPLY);
-<<<<<<< Updated upstream
-                            v.setTag((Object) 3);
-=======
->>>>>>> Stashed changes
-                            mItem.getHash().put(dayOfYear, 3);
-                            break;
+                            mAccomplishedDays++;
+                            updateViewAccomplishedDays();
 
-                        case 3: // skip, blue
-                            v.getBackground().setColorFilter(Color.parseColor("#FF0000FF"), android.graphics.PorterDuff.Mode.MULTIPLY);
-<<<<<<< Updated upstream
-                            v.setTag((Object) 1);
-                            mItem.getHash().put(dayOfYear, 1);
                             break;
-                    }
-                    if (mListener != null) {
-                        mListener.onDateStatusChanged();
-                    }
-=======
-                            mItem.getHash().put(dayOfYear, 1);
+//                        case 1: // done, green
+//                            v.getBackground().setAlpha(255);
+//                            btn.setTextColor(Color.parseColor("#FFFFFFFF"));
+//                            v.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), PorterDuff.Mode.SRC_IN);
+//                            mItem.getHash().put(dayOfYear, 2);
+//                            mAccomplishedDays--;
+//                            updateViewAccomplishedDays();
+//
+//                            break;
+                        case 2: // fail, red
+                            v.getBackground().setAlpha(0);
+                            btn.setTextColor(Color.parseColor("#FF000000"));
+                            mItem.getHash().put(dayOfYear, 0);
+                            mAccomplishedDays--;
+                            updateViewAccomplishedDays();
                             break;
                         default:
-                            v.getBackground().setColorFilter(null);
+                            btn.setTextColor(Color.parseColor("#FF000000"));
+                            v.getBackground().setAlpha(0);
+                            mItem.getHash().put(dayOfYear, 1);
                             break;
                     }
                     ItemDAO itemDAO = new ItemDAO(mContext);
                     itemDAO.update(mItem);
->>>>>>> Stashed changes
                 }
             });
         }
@@ -272,14 +261,11 @@ public class HabitView extends LinearLayout {
     public Item getItem() {
         return mItem;
     }
-<<<<<<< Updated upstream
-    public void setListener(DateStatusListener listener) {
-        mListener = listener;
-    }
-=======
->>>>>>> Stashed changes
 
-    public interface DateStatusListener {
-        void onDateStatusChanged();
+    private void updateViewAccomplishedDays() {
+        if (mContainer != null) {
+            TextView tx = (TextView) mContainer.findViewById(R.id.max_connected_days_now);
+            tx.setText(Integer.toString(mAccomplishedDays));
+        }
     }
 }

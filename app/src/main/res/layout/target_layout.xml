@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    android:elevation="20dp"
+
+    android:background="@drawable/shadow"
     android:orientation="horizontal">
 
     <View
@@ -11,7 +12,7 @@
         android:layout_height="150dp"
 
         android:background="@drawable/lcorner"
-        android:backgroundTint="#ff303030" />
+        android:backgroundTint="@color/green1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,8 +82,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/brcorner"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="@string/max_connected_days_now" />
+
+            <TextView
+                android:id="@+id/max_connected_days_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="3dp"
+                android:text="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,28 +117,6 @@
 
             <TextView
                 android:id="@+id/max_connected_days_ever"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="0" />
-            
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/brcorner"
-                android:padding="3dp"
-                android:text="@string/max_connected_days_now" />
-
-            <TextView
-                android:id="@+id/max_connected_days_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
