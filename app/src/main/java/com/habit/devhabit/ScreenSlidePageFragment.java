@@ -36,7 +36,7 @@ public class ScreenSlidePageFragment extends Fragment {
     static private TargetController mController;
     static private Bitmap mBitmap;
     static private ImageView mCameraImage;
-    
+
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -47,37 +47,9 @@ public class ScreenSlidePageFragment extends Fragment {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNumber);
-        android.util.Log.v("MCLOG", "pageNumber = " + pageNumber);
+
         fragment.setArguments(args);
         return fragment;
-
-//        switch (pageNumber) {
-//            case 0:
-//                ScreenSlidePageFragment fragment1 = new ScreenSlidePageFragment();
-//                Bundle args1 = new Bundle();
-//                args1.putInt(ARG_PAGE, pageNumber);
-//                fragment1.setArguments(args1);
-//                return fragment1;
-//                //break;
-//            case 1:
-//                ScreenSlidePageFragment fragment2 = new ScreenSlidePageFragment();
-//                Bundle args2 = new Bundle();
-//                args2.putInt(ARG_PAGE, pageNumber);
-//                fragment2.setArguments(args2);
-//                return fragment2;
-//                //break;
-//            case 2:
-//                ScreenSlidePageFragment fragment3 = new ScreenSlidePageFragment();
-//                Bundle args3 = new Bundle();
-//                args3.putInt(ARG_PAGE, pageNumber);
-//                fragment3.setArguments(args3);
-//                return fragment3;
-//                //break;
-//            default:
-//                break;
-//        }
-//
-//        return null;
     }
 
     public ScreenSlidePageFragment() {
@@ -92,7 +64,7 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        android.util.Log.v("MCLOG", " onCreateView mPageNumber = " + mPageNumber);
+
         switch (mPageNumber) {
             case 0:
                 return createPageZero(inflater, container, savedInstanceState);
@@ -104,7 +76,6 @@ public class ScreenSlidePageFragment extends Fragment {
                 return createPageTwo(inflater, container, savedInstanceState);
             //break;
             default:
-
                 break;
         }
         return null;
@@ -185,18 +156,6 @@ public class ScreenSlidePageFragment extends Fragment {
      */
     public int getPageNumber() {
         return mPageNumber;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        android.util.Log.v("MCLOG", "onDestroyView " + this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        android.util.Log.v("MCLOG", "onDestroy " + this);
     }
 
     static public void setImageBitmap(Bitmap bmp) {
