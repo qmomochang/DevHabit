@@ -37,6 +37,8 @@ public class ScreenSlidePageFragment extends Fragment {
     static private Bitmap mBitmap;
     static private ImageView mCameraImage;
 
+    static private ViewGroup mViewGroup;
+
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -164,5 +166,10 @@ public class ScreenSlidePageFragment extends Fragment {
         if (mBitmap != null && mCameraImage != null) {
             mCameraImage.setImageBitmap(mBitmap);
         }
+    }
+
+    static public void addNewHAbit() {
+        ViewGroup rootView = (ViewGroup) ((Activity) mContext).findViewById(R.id.rootView);
+        mController.addHabit(rootView);
     }
 }

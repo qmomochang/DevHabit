@@ -1,44 +1,44 @@
 <resources>
-    <string name="app_name">Habit</string>
+    <string name="app_name">習慣養成</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="about_us">About Us</string>
-    <string name="max_connected_days_now">Accomplished days : </string>
-    <string name="max_connected_days_ever">Max lasted days ever : </string>
+    <string name="action_settings">設定</string>
+    <string name="about_us">關於我們</string>
+    <string name="max_connected_days_now">已完成日數 : </string>
+    <string name="max_connected_days_ever">最久持續 : </string>
 
-    <string name="habit_form">Create a new habit</string>
-    <string name="habit_form_name">Habit name</string>
-    <string name="habit_form_description">Habit description</string>
-    <string name="habit_form_reasons">Habit reasons</string>
-    <string name="habit_form_start_date">Start date</string>
-    <string name="habit_form_schedule">Schedule</string>
+    <string name="habit_form">開始一個新習慣</string>
+    <string name="habit_form_name">習慣名稱</string>
+    <string name="habit_form_description">描述習慣</string>
+    <string name="habit_form_reasons">為什麼要養成這個習慣</string>
+    <string name="habit_form_start_date">開始日期</string>
+    <string name="habit_form_schedule">習慣排程 ex : 每天、每周 x 天</string>
 
-    <string name="hint_input_target_name">Give the habit a name</string>
-    <string name="hint_input_target_desc">Give the habit a description</string>
-    <string name="hint_input_target_reasons">Give the habit reasons</string>
-    <string name="hint_input_target_start_date">Give the habit a start date ex: 2016-04-01</string>
-    <string name="hint_input_target_schedule">Give the habit a schedule</string>
+    <string name="hint_input_target_name">給習慣一個名字  ex : 慢跑</string>
+    <string name="hint_input_target_desc">描述一下這個習慣</string>
+    <string name="hint_input_target_reasons">想要養成這個習慣的原因  ex : 健康 </string>
+    <string name="hint_input_target_start_date">開始養成這個習慣的日期 ex: 2016-04-01</string>
+    <string name="hint_input_target_schedule">設定這個習慣的排程模式</string>
 
-    <string name="target_menu_modify">Modify</string>
-    <string name="target_menu_delete">Delete</string>
+    <string name="target_menu_modify">修改</string>
+    <string name="target_menu_delete">刪除</string>
 
-    <string name="target_dialog_content_modified_title">Content modified</string>
-    <string name="target_dialog_content_modified_content">The content has been modified, save before leave?</string>
-    <string name="save">Save</string>
-    <string name="leave_without_saving">Keep leaving</string>
-    <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="error">Error</string>
+    <string name="target_dialog_content_modified_title">內容已修改</string>
+    <string name="target_dialog_content_modified_content">內容改經被修改, 離開前先儲存 ?</string>
+    <string name="save">儲存</string>
+    <string name="leave_without_saving">不儲存</string>
+    <string name="cancel">取消</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="error">錯誤</string>
 
-    <string name="monday">Mon</string>
-    <string name="tuesday">Tue</string>
-    <string name="wednesday">Wed</string>
-    <string name="thursday">Thu</string>
-    <string name="friday">Fri</string>
-    <string name="saturday">Sat</string>
-    <string name="sunday">Sun</string>
+    <string name="monday">一</string>
+    <string name="tuesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+    <string name="sunday">日</string>
 
-    <string name="take_a_photo">Take a gift photo</string>
+    <string name="take_a_photo">拍個禮物照片吧</string>
 </resources>

@@ -30,6 +30,7 @@
     <string name="cancel">取消</string>
     <string name="yes">是</string>
     <string name="no">否</string>
+    <string name="error">錯誤</string>
 
     <string name="monday">一</string>
     <string name="tuesday">二</string>
@@ -39,5 +40,5 @@
     <string name="saturday">六</string>
     <string name="sunday">日</string>
 
-    <string name="take_a_photo">Take a gift photo</string>
+    <string name="take_a_photo">拍個禮物照片吧</string>
 </resources>
