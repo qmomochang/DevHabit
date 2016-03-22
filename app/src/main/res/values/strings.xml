@@ -30,7 +30,7 @@
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="error">Error</string>
+    <string name="err">Error</string>
 
     <string name="monday">Mon</string>
     <string name="tuesday">Tue</string>
