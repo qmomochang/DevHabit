@@ -169,7 +169,7 @@ public class ScreenSlidePageFragment extends Fragment {
     }
 
     static public void addNewHAbit() {
-        ViewGroup rootView = (ViewGroup) ((Activity) mContext).findViewById(R.id.rootView);
-        mController.addHabit(rootView);
+        ViewGroup container = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
+        mController.addHabit(container);
     }
 }
