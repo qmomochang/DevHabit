@@ -1,7 +1,11 @@
 package com.habit.devhabit;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,21 +19,27 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int FROM_MAIN_ACTIVITY = 1;
+    public static final int REQUEST_IMAGE_CAPTURE = 2;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
 
-    private static final int FROM_MAIN_ACTIVITY = 1;
 
-    TargetController mController;
+    private static final int NUM_PAGES = 3;
+    private TargetController mController;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mContext = this;
+
         setContentView(R.layout.activity_screen_slide);
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -44,16 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         //setContentView(R.layout.activity_main);
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, "Hello Snackbar", Snackbar.LENGTH_LONG).show();
-                Intent i = new Intent();
-                i.setClass(MainActivity.this, InputTargetActivity.class);
 
-                startActivityForResult(i, FROM_MAIN_ACTIVITY);
-            }
-        });
 
         mController = new TargetController(this);
 
@@ -95,12 +96,42 @@ public class MainActivity extends AppCompatActivity {
                 Item item = (Item) b.getSerializable("item");
                 ItemDAO itemDAO = new ItemDAO(this);
                 itemDAO.insert(item);
-                mController.addHabit();
+                break;
+            case REQUEST_IMAGE_CAPTURE:
+                Bundle b2 = data.getExtras();
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                ScreenSlidePageFragment.setImageBitmap(photo);
                 break;
             default:
                 break;
         }
         return;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(i);
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -110,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.create(position);
+            return ScreenSlidePageFragment.create(mContext, mController, position);
         }
 
         @Override

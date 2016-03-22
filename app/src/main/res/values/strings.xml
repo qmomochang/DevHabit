@@ -39,4 +39,6 @@
     <string name="friday">Fri</string>
     <string name="saturday">Sat</string>
     <string name="sunday">Sun</string>
+
+    <string name="take_a_photo">Take a gift photo</string>
 </resources>

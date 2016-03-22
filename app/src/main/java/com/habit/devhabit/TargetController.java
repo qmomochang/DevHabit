@@ -21,20 +21,19 @@ public class TargetController {
 
     public TargetController(Context ctx) {
         mContext = ctx;
-        initUi();
     }
 
-    private void initUi() {
-        prepareHabits();
+    public void initUi(ViewGroup container) {
+        prepareHabits(container);
     }
 
-    private void prepareHabits() {
+    private void prepareHabits(ViewGroup container) {
         mItemDAO = new ItemDAO(mContext);
         if (mItemDAO.getCount() == 0) {
             mItemDAO.sample();
         }
         mItems = mItemDAO.getAll();
-        mHabitContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
+        mHabitContainer = (ViewGroup) container.findViewById(R.id.habit_container);
         int i = 0;
         for (Item item : mItems) {
             ((Activity) mContext).getLayoutInflater().inflate(R.layout.target_layout, mHabitContainer);
@@ -47,8 +46,8 @@ public class TargetController {
         }
     }
 
-    public void addHabit() {
-        mHabitContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
+    public void addHabit(ViewGroup container) {
+        mHabitContainer = (ViewGroup) container.findViewById(R.id.habit_container);
 
         Item item = mItemDAO.getLast();
 
