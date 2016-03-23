@@ -253,6 +253,7 @@ public class HabitView extends LinearLayout {
                     }
                     ItemDAO itemDAO = new ItemDAO(mContext);
                     itemDAO.update(mItem);
+
                 }
             });
         }

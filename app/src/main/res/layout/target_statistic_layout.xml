@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.habit.devhabit.HabitStatisticView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+
+    android:background="@drawable/shadow"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="18dp"
+        android:layout_height="150dp"
+
+        android:background="@drawable/lcorner"
+        android:backgroundTint="@color/green1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/rcorner"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/target_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/target_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:background="@drawable/trcorner"
+                android:padding="3dp"
+                android:text="Target" />
+
+        </FrameLayout>
+
+        <com.habit.devhabit.CustomView
+            android:id="@+id/target_chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+</com.habit.devhabit.HabitStatisticView>

@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -87,7 +88,7 @@ public class ScreenSlidePageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.activity_main_page_1, container, false);
         //Button cameraBtn = (Button) rootView.findViewById(R.id.camera_button);
-        ImageView cameraBtn = (ImageView) rootView.findViewById(R.id.camera_button);
+        FloatingActionButton cameraBtn = (FloatingActionButton) rootView.findViewById(R.id.fab1);
         mCameraImage = (ImageView) rootView.findViewById(R.id.camera_result);
         if (mBitmap != null && mCameraImage != null) {
             mCameraImage.setImageBitmap(mBitmap);
@@ -150,6 +151,9 @@ public class ScreenSlidePageFragment extends Fragment {
     private View createPageTwo(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.activity_main_page_3, container, false);
+
+        // need to be careful, initUi cannot find container if it's been put in the wrong position
+        mController.initStatisticUi(rootView);
         return rootView;
     }
 

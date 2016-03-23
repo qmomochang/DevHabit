@@ -15,6 +15,7 @@ import java.util.List;
 public class TargetController {
     Context mContext;
     ViewGroup mHabitContainer;
+    ViewGroup mHabitStatisticContainer;
 
     private ItemDAO mItemDAO;
     private List<Item> mItems;
@@ -59,6 +60,32 @@ public class TargetController {
                 ((HabitView) v).setupView((ViewGroup) v, item);
             }
         }
+
+    }
+
+    public void initStatisticUi(ViewGroup container) {
+        prepareHabitsStatistics(container);
+    }
+
+    private void prepareHabitsStatistics(ViewGroup container) {
+        mItemDAO = new ItemDAO(mContext);
+        if (mItemDAO.getCount() == 0) {
+            mItemDAO.sample();
+        }
+        mItems = mItemDAO.getAll();
+        mHabitStatisticContainer = (ViewGroup) container.findViewById(R.id.habit_chart_container);
+        int i = 0;
+        for (Item item : mItems) {
+            ((Activity) mContext).getLayoutInflater().inflate(R.layout.target_statistic_layout, mHabitStatisticContainer);
+            if (mHabitStatisticContainer != null) {
+                View v = mHabitStatisticContainer.getChildAt(i++);
+                if ( v instanceof HabitStatisticView) {
+                    ((HabitStatisticView) v).setupView((ViewGroup) v, item);
+                }
+            }
+        }
+    }
+    public void updateHabitsStatistics(Item item) {
 
     }
 }

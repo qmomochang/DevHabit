@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">習慣養成</string>
+    <string name="app_name">我要好習慣</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">設定</string>
-    <string name="about_us">關於我們</string>
+    <string name="about">關於</string>
+    <string name="about_title">關於</string>
+    <string name="about_content">關於</string>
     <string name="max_connected_days_now">已完成日數 : </string>
     <string name="max_connected_days_ever">最久持續 : </string>
 
@@ -30,6 +32,7 @@
     <string name="cancel">取消</string>
     <string name="yes">是</string>
     <string name="no">否</string>
+    <string name="ok">好</string>
     <string name="error">錯誤</string>
 
     <string name="monday">一</string>
