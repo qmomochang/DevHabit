@@ -70,13 +70,13 @@ public class ScreenSlidePageFragment extends Fragment {
 
         switch (mPageNumber) {
             case 0:
-                return createPageZero(inflater, container, savedInstanceState);
-            //break;
-            case 1:
                 return createPageOne(inflater, container, savedInstanceState);
             //break;
-            case 2:
+            case 1:
                 return createPageTwo(inflater, container, savedInstanceState);
+            //break;
+//            case 2:
+//                return createPageTwo(inflater, container, savedInstanceState);
             //break;
             default:
                 break;

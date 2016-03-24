@@ -99,26 +99,33 @@ public class CustomView extends View {
                     drawLines = new float[62];
                     float diffBy30 = mWidth / 30;
 
-                    xpts[0] = 50;
-                    ypts[0] = 30;
+                    int yBase = mHeight - 40;   // yaxi is inverted, rename it for better recognition
 
+                    xpts[0] = 50;
+                    ypts[0] = yBase;
+                    float diff = 0;
                     for (int i = 1; i < 30; i++) {
                         xpts[i] = 50 + diffBy30 * i;
                         if (mDataList.get(i).equals(2)) {
-                            ypts[i] += ypts[i - 1] + mDataList.get(i) / 2 * mHeight / 4;
+                            if (mMax != 0) {
+                                diff = mDataList.get(i) / 2 * mHeight / mMax;
+                            }
+                            ypts[i] = yBase - ypts[i-1] - diff ;
                         } else {
-                            ypts[i] = 30;
+                            ypts[i] = yBase;
                         }
                     }
                     for (int i = 0; i < 30; i++) {
                         ypts[i] = mHeight - ypts[i];
-                        if (ypts[i] > mHeight - 40) {
-                            ypts[i] = mHeight - 40;
+                        if (ypts[i] < 40) {
+                            ypts[i] = 40;
                         }
                     }
+                    dumpXYpts();
                 }
             });
         }
+
     }
 
     @Override
@@ -179,6 +186,15 @@ public class CustomView extends View {
         //canvas.drawLines(drawLines, paint);
         for (int i = 0; i < 29; i++) {
             canvas.drawLine(xpts[i], ypts[i], xpts[i + 1], ypts[i + 1], paint);
+        }
+    }
+
+    private void dumpXYpts() {
+        android.util.Log.v("MCLOG","dumpXYpts xpts = "+xpts+", ypts = "+ypts);
+        if (xpts != null && ypts != null) {
+            for (int i = 0; i < 29; i++) {
+                android.util.Log.v("MCLOG", "xpts[" + i + "] = " + xpts[i] + ", ypts[" + i + "] = " + ypts[i]);
+            }
         }
     }
 }

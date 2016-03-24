@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
 
 
-    private static final int NUM_PAGES = 3;
+    private static final int NUM_PAGES = 2;
     private TargetController mController;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;

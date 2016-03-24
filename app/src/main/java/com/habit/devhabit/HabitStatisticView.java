@@ -29,8 +29,6 @@ public class HabitStatisticView extends LinearLayout {
     List<String> mDateList;
     List<Integer> mDataList;
 
-    private String SLASH = "/";
-
     public HabitStatisticView(Context context) {
         super(context);
         mContext = context;
@@ -62,7 +60,7 @@ public class HabitStatisticView extends LinearLayout {
         }
 
         Calendar c = Calendar.getInstance();
-        int day_of_year = c.get(Calendar.DAY_OF_YEAR);
+        int day_of_year = c.get(Calendar.DAY_OF_YEAR) - 30;
 
         SimpleDateFormat df = new SimpleDateFormat("MM/dd");
         int doy = 0;
@@ -71,15 +69,15 @@ public class HabitStatisticView extends LinearLayout {
             mDateList.add(df.format(c.getTime()));
 
             // setup data list
-            if (mItem.getHash().get(Integer.toString(day_of_year - i)) == null) {
+            if (mItem.getHash().get(Integer.toString(day_of_year + i)) == null) {
                 doy = 0;
             } else {
-                doy = (int) mItem.getHash().get(Integer.toString(day_of_year - i));
+                doy = (int) mItem.getHash().get(Integer.toString(day_of_year + i));
             }
             mDataList.add(doy);
 
             // shift date
-            c.set(Calendar.DAY_OF_YEAR, day_of_year - i);
+            c.set(Calendar.DAY_OF_YEAR, day_of_year + i);
         }
 
         CustomView v = (CustomView) findViewById(R.id.target_chart);
