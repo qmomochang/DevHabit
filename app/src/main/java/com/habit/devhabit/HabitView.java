@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -27,6 +28,7 @@ import java.util.Iterator;
  */
 public class HabitView extends LinearLayout {
     Context mContext;
+    View mThis;
     Item mItem;
     ViewGroup mContainer;
     PopupMenu mTargetPopupMenu;
@@ -36,6 +38,7 @@ public class HabitView extends LinearLayout {
 
     public interface OnDataChangedListener {
         void onDataChanged();
+        void onDataDeleted();
     }
 
     public HabitView(Context context) {
@@ -54,6 +57,7 @@ public class HabitView extends LinearLayout {
     }
 
     public void setupView(ViewGroup vg, Item item) {
+        mThis = this;
         mItem = item;
         mContainer = vg;
         setupHabitView(vg, item);
@@ -63,7 +67,7 @@ public class HabitView extends LinearLayout {
     private void setupHabitViewMenu(ViewGroup container) {
 
         // set listener
-        ImageButton mTargetTitleButton = (ImageButton) container.findViewById(R.id.target_title_btn);
+        final ImageButton mTargetTitleButton = (ImageButton) container.findViewById(R.id.target_title_btn);
         if (mTargetTitleButton != null) {
             mTargetTitleButton.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -87,7 +91,20 @@ public class HabitView extends LinearLayout {
                         ItemDAO itemDAO = new ItemDAO(mContext);
                         itemDAO.delete(mItem.getId());
 
+//                        ViewGroup parentView = (ViewGroup) getParent();
+//                        if (parentView != null) {
+//                            for (int i = 0;i<parentView.getChildCount();i++) {
+//                                if (parentView.getChildAt(i) == mThis) {
+//
+//                                }
+//                            }
+//                        }
+
                         ((ViewGroup) getParent()).removeView(HabitView.this);
+
+                        if (mOnDataChangedListener != null) {
+                            mOnDataChangedListener.onDataDeleted();
+                        }
                         break;
                 }
                 return true;

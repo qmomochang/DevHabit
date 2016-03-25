@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.habit.devhabit"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 2
         versionName "2.0"

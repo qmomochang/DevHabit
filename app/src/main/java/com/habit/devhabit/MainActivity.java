@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 Item item = (Item) b.getSerializable("item");
                 ItemDAO itemDAO = new ItemDAO(this);
                 itemDAO.insert(item);
-                ScreenSlidePageFragment.addNewHAbit();
+                ScreenSlidePageFragment.addNewHabit();
                 break;
             case REQUEST_IMAGE_CAPTURE:
                 Bundle b2 = data.getExtras();

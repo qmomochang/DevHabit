@@ -102,4 +102,8 @@ public class HabitStatisticView extends LinearLayout {
         // setup title
         ((TextView) findViewById(R.id.target_title)).setText(item.getTitle());
     }
+
+    public void removeView() {
+        ((ViewGroup)getParent()).removeView(this);
+    }
 }

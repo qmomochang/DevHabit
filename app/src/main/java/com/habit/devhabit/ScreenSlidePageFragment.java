@@ -144,7 +144,7 @@ public class ScreenSlidePageFragment extends Fragment {
         });
 
         // need to be careful, initUi cannot find container if it's been put in the wrong position
-        mController.initUi(rootView);
+        mController.initHabitViewUi(rootView);
         return rootView;
     }
 
@@ -172,8 +172,9 @@ public class ScreenSlidePageFragment extends Fragment {
         }
     }
 
-    static public void addNewHAbit() {
-        ViewGroup container = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
-        mController.addHabit(container);
+    static public void addNewHabit() {
+        ViewGroup habitContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
+        ViewGroup habitStatisticContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_chart_container);
+        mController.addHabit(habitContainer, habitStatisticContainer);
     }
 }
