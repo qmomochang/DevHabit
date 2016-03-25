@@ -21,7 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int FROM_MAIN_ACTIVITY = 1;
+    public static final int SET_NEW_HABIT = 1;
     public static final int REQUEST_IMAGE_CAPTURE = 2;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         switch (requestedCode) {
-            case FROM_MAIN_ACTIVITY:
+            case SET_NEW_HABIT:
                 Bundle b = data.getExtras();
                 Item item = (Item) b.getSerializable("item");
                 ItemDAO itemDAO = new ItemDAO(this);

@@ -44,6 +44,11 @@ public class HabitStatisticView extends LinearLayout {
         mContext = context;
     }
 
+    public void updateView() {
+        ItemDAO item = new ItemDAO(mContext);
+        mItem = item.get(mItem.getId());
+        setupView(mStatisticContainer, mItem);
+    }
     public void setupView(ViewGroup vg, Item item) {
         mItem = item;
         mStatisticContainer = vg;
@@ -51,28 +56,36 @@ public class HabitStatisticView extends LinearLayout {
         setupStatisticView(vg, item);
     }
 
+    public Item getItem() {
+        return mItem;
+    }
+
     public void prepareData(Item item) {
         if (mDateList == null) {
             mDateList = new ArrayList<>();
         }
+        mDateList.clear();
         if (mDataList == null) {
             mDataList = new ArrayList<>();
         }
+        mDataList.clear();
 
         Calendar c = Calendar.getInstance();
-        int day_of_year = c.get(Calendar.DAY_OF_YEAR) - 30;
+        int day_of_year = c.get(Calendar.DAY_OF_YEAR) - 29;
+        // return 30days
+        c.set(Calendar.DAY_OF_YEAR, day_of_year);
 
         SimpleDateFormat df = new SimpleDateFormat("MM/dd");
         int doy = 0;
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 0; i < 31; i++) {
             // setup date list
             mDateList.add(df.format(c.getTime()));
 
             // setup data list
-            if (mItem.getHash().get(Integer.toString(day_of_year + i)) == null) {
+            if (mItem.getHash().get(Integer.toString(day_of_year + i - 1)) == null) {
                 doy = 0;
             } else {
-                doy = (int) mItem.getHash().get(Integer.toString(day_of_year + i));
+                doy = (int) mItem.getHash().get(Integer.toString(day_of_year + i - 1));
             }
             mDataList.add(doy);
 
@@ -89,10 +102,4 @@ public class HabitStatisticView extends LinearLayout {
         // setup title
         ((TextView) findViewById(R.id.target_title)).setText(item.getTitle());
     }
-
-
-
-
-
-
 }

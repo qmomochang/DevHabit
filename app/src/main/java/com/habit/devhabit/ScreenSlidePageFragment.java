@@ -139,7 +139,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 Intent i = new Intent();
                 i.setClass(mContext, InputTargetActivity.class);
 
-                startActivityForResult(i, MainActivity.FROM_MAIN_ACTIVITY);
+                ((Activity) mContext).startActivityForResult(i, MainActivity.SET_NEW_HABIT);
             }
         });
 

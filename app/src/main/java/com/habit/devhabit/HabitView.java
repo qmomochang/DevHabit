@@ -32,6 +32,12 @@ public class HabitView extends LinearLayout {
     PopupMenu mTargetPopupMenu;
     int mAccomplishedDays = 0;
 
+    OnDataChangedListener mOnDataChangedListener;
+
+    public interface OnDataChangedListener {
+        void onDataChanged();
+    }
+
     public HabitView(Context context) {
         super(context);
         mContext = context;
@@ -253,7 +259,9 @@ public class HabitView extends LinearLayout {
                     }
                     ItemDAO itemDAO = new ItemDAO(mContext);
                     itemDAO.update(mItem);
-
+                    if (mOnDataChangedListener != null) {
+                        mOnDataChangedListener.onDataChanged();
+                    }
                 }
             });
         }
@@ -268,5 +276,9 @@ public class HabitView extends LinearLayout {
             TextView tx = (TextView) mContainer.findViewById(R.id.max_connected_days_now);
             tx.setText(Integer.toString(mAccomplishedDays));
         }
+    }
+
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        mOnDataChangedListener = listener;
     }
 }

@@ -42,6 +42,24 @@ public class TargetController {
                 View v = mHabitContainer.getChildAt(i++);
                 if ( v instanceof HabitView) {
                     ((HabitView) v).setupView((ViewGroup) v, item);
+                    final Item finalItem = item;
+                    ((HabitView) v).setOnDataChangedListener(new HabitView.OnDataChangedListener() {
+                        @Override
+                        public void onDataChanged() {
+                            if (mHabitStatisticContainer != null) {
+                                View child;
+                                for(int i=0;i<mHabitStatisticContainer.getChildCount();i++) {
+                                    child = mHabitStatisticContainer.getChildAt(i);
+                                    if (child != null && child instanceof HabitStatisticView && ((HabitStatisticView)child).getItem() != null) {
+                                        if (finalItem.getTitle().equals( ((HabitStatisticView)child).getItem().getTitle())) {
+                                            ((HabitStatisticView) child).updateView();
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    });
                 }
             }
         }
@@ -84,8 +102,5 @@ public class TargetController {
                 }
             }
         }
-    }
-    public void updateHabitsStatistics(Item item) {
-
     }
 }

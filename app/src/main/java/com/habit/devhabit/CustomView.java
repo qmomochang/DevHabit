@@ -49,6 +49,8 @@ public class CustomView extends View {
     }
 
     public void setupList(List<String> dateList, List<Integer> dataList) {
+
+        mAccu = 0;
         // setup date
         if (mDateList == null) {
             mDateList = new ArrayList<String>();
@@ -67,7 +69,7 @@ public class CustomView extends View {
 
         // found out max/min
         int value;
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < mDataList.size(); i++) {
             value = mDataList.get(i) / 2;  // done equals 2, normalize it
             mAccu += value;
         }
@@ -77,16 +79,17 @@ public class CustomView extends View {
         mMax = mAccu;
         mMin = 0;
 
-        float diff = (mMax - mMin) / 4;
-        yaxis = new String[4];
-        yaxis[0] = Float.toString(mMin);
-        yaxis[1] = Float.toString(mMin + diff * 2);
-        yaxis[2] = Float.toString(mMin + diff * 3);
-        yaxis[3] = Float.toString(mMax);
+        float diff = mMax / 4;
+        yaxis = new String[5];
+        yaxis[0] = "0";
+        yaxis[1] = Float.toString(diff);
+        yaxis[2] = Float.toString(diff * 2);
+        yaxis[3] = Float.toString(diff * 3);
+        yaxis[4] = Float.toString(mMax);
 
 
         // setup timing to get width/height
-        ViewTreeObserver observer = getViewTreeObserver();
+        final ViewTreeObserver observer = getViewTreeObserver();
         if (observer != null) {
             observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -94,38 +97,58 @@ public class CustomView extends View {
                     mWidth = getWidth();
                     mHeight = getHeight();
 
-                    xpts = new float[30];
-                    ypts = new float[30];
+                    xpts = new float[31];
+                    ypts = new float[31];
                     drawLines = new float[62];
-                    float diffBy30 = mWidth / 30;
+                    float diffBy30 = (mWidth - 100) / 30;
 
-                    int yBase = mHeight - 40;   // yaxi is inverted, rename it for better recognition
+                    float yBase = mHeight - 40;   // yaxi is inverted, rename it for better recognition
+                    float yHeight = mHeight - 80;
 
-                    xpts[0] = 50;
-                    ypts[0] = yBase;
-                    float diff = 0;
-                    for (int i = 1; i < 30; i++) {
+                    for (int i = 0; i < 31; i++) {
                         xpts[i] = 50 + diffBy30 * i;
+
                         if (mDataList.get(i).equals(2)) {
-                            if (mMax != 0) {
-                                diff = mDataList.get(i) / 2 * mHeight / mMax;
-                            }
-                            ypts[i] = yBase - ypts[i-1] - diff ;
+                            ypts[i] = yHeight / mMax;
                         } else {
-                            ypts[i] = yBase;
+                            ypts[i] = 0;
                         }
+                        android.util.Log.v("MCLOG", "before convert x = " + xpts[i] + ", ypts = " + ypts[i]);
                     }
-                    for (int i = 0; i < 30; i++) {
-                        ypts[i] = mHeight - ypts[i];
-                        if (ypts[i] < 40) {
-                            ypts[i] = 40;
-                        }
-                    }
+
+                    convertYPTs(ypts, yBase);
+
+//                    for (int i = 0; i < 30; i++) {
+//                        ypts[i] = mHeight - ypts[i];
+//                        if (ypts[i] < 40) {
+//                            ypts[i] = 40;
+//                        }
+//                    }
                     dumpXYpts();
+                    getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    invalidate();
                 }
             });
         }
 
+    }
+
+    private void convertYPTs(float[] arr, float base) {
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                arr[i] += arr[i - 1];
+            }
+        }
+
+        arr[0] = base;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == 0) {
+                arr[i] = base;
+            } else {
+                arr[i] = base - arr[i];
+            }
+        }
     }
 
     @Override
@@ -147,32 +170,34 @@ public class CustomView extends View {
         Paint textPaint = new Paint();
         textPaint.setColor(Color.parseColor("#FF000000"));
         textPaint.setStyle(Paint.Style.STROKE);
-        textPaint.setTextAlign(Paint.Align.CENTER);//字水平居中
+        textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(30);
 
         // FontMetrics fontMetrics = paint.getFontMetrics();计算字的高度
-
-
         // horizontal lines
-        for (int i = 0; i < 4; i++) {
+        int yShift = (mHeight - 80) / 4;
+        for (int i = 0; i < 5; i++) {
             canvas.drawLine(50,                         // x1
-                    60 + mHeight / 4 * i,       // y1
+                    mHeight - 40 - yShift * i,       // y1
                     mWidth - 50,                // x2
-                    60 + mHeight / 4 * i,       // y2
+                    mHeight - 40 - yShift * i,       // y2
                     paint);
 
-            canvas.drawText(yaxis[3 - i], 25, 60 + mHeight / 4 * i, textPaint);
+            canvas.drawText(yaxis[4-i], 25, 60 + yShift * i, textPaint);
         }
 
         // vertical lines
-        for (int i = 0; i < 6; i++) {
-            canvas.drawLine(50 + mWidth / 6 * i,        // x1
-                    40,                         // y1
-                    50 + mWidth / 6 * i,        // x2
-                    mHeight - 40,               // y2
-                    paint);
+        int xShift = (mWidth - 100) / 30;
+        for (int i = 0; i < 31; i++) {
+            if (i % 5 == 0) {
+                canvas.drawLine(50 + xShift * i,        // x1
+                        40,                         // y1
+                        50 + xShift * i,        // x2
+                        mHeight - 40,               // y2
+                        paint);
 
-            canvas.drawText(mDateList.get(25 - i * 5), 50 + mWidth / 6 * i, 30, textPaint);
+                canvas.drawText(mDateList.get(i), 50 + xShift * i, 30, textPaint);
+            }
         }
     }
 
@@ -180,19 +205,19 @@ public class CustomView extends View {
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#FF00AA00"));
         //paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(4);
         paint.setStyle(Paint.Style.STROKE);
 
         //canvas.drawLines(drawLines, paint);
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 30; i++) {
             canvas.drawLine(xpts[i], ypts[i], xpts[i + 1], ypts[i + 1], paint);
         }
     }
 
     private void dumpXYpts() {
-        android.util.Log.v("MCLOG","dumpXYpts xpts = "+xpts+", ypts = "+ypts);
+        android.util.Log.v("MCLOG", "dumpXYpts xpts = " + xpts + ", ypts = " + ypts);
         if (xpts != null && ypts != null) {
-            for (int i = 0; i < 29; i++) {
+            for (int i = 0; i < 30; i++) {
                 android.util.Log.v("MCLOG", "xpts[" + i + "] = " + xpts[i] + ", ypts[" + i + "] = " + ypts[i]);
             }
         }
