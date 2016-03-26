@@ -5,7 +5,7 @@
     <string name="action_settings">設定</string>
     <string name="about">關於</string>
     <string name="about_title">關於</string>
-    <string name="about_content">歡迎參觀我們的網站 : <a href="https://www.facebook.com/我要好習慣-102631956803732/">Link</a></string>
+    <string name="about_content">喜歡我好棒棒嗎，請給我們 feedback 吧！\n<a href="market://details?id=com.habit.devhabit">market link</a></string>
     <string name="max_connected_days_now">已完成日數 : </string>
     <string name="max_connected_days_ever">最久持續 : </string>
 
@@ -17,9 +17,9 @@
     <string name="habit_form_schedule">習慣排程 ex : 每天、每周 x 天</string>
 
     <string name="hint_input_target_name">給棒棒目標一個名字  ex : 慢跑</string>
-    <string name="hint_input_target_desc">描述一下這個棒棒</string>
-    <string name="hint_input_target_reasons">想要養成這個習慣的原因  ex : 健康 </string>
-    <string name="hint_input_target_start_date">開始養成這個棒棒的日期 ex: 2016-04-01</string>
+    <string name="hint_input_target_desc">描述一下這個棒棒習慣</string>
+    <string name="hint_input_target_reasons">想要養成這個棒棒習慣的原因  ex : 健康 </string>
+    <string name="hint_input_target_start_date">開始養成這個棒棒習慣的日期 ex: 2016-04-01</string>
     <string name="hint_input_target_schedule">設定這個棒棒的排程模式</string>
 
     <string name="target_menu_modify">修改</string>
@@ -45,9 +45,12 @@
 
     <string name="take_a_photo">拍個禮物照片吧</string>
 
-    <string name="sample_1">擁抱父母</string>
+    <string name="sample_1">擁抱家人</string>
     <string name="sample_2">親吻一個親密的人</string>
     <string name="sample_3">閱讀30分鐘</string>
     <string name="sample_4">運動30分鐘</string>
 
+    <string name="cold_start_dlg_content">我好棒棒，每天都要比昨天更棒棒。\n\n點擊日期來完成每日的棒棒。</string>
+    <string name="first_launch_dlg_content">首次進入會給四個棒棒目標，分別關於家庭、親密關係、專業、健康，四個棒棒目標，你可以決定新增或修改這些棒棒目標。</string>
+    <string name="complete_today_target">你好棒棒，完成了今天的棒棒目標！</string>
 </resources>

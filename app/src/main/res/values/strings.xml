@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
     <string name="about_title">About</string>
-    <string name="about_content">Welcome to check our site: <u>https://www.facebook.com/我要好習慣-102631956803732/</u>></string>
+    <string name="about_content">Welcome to check our site: \n<a href="market://details?id=com.habit.devhabit">market link</a></string>
     <string name="max_connected_days_now">Accomplished days : </string>
     <string name="max_connected_days_ever">Max lasted days ever : </string>
 
@@ -45,8 +45,12 @@
 
     <string name="take_a_photo">Take a gift photo</string>
 
-    <string name="sample_1">Hug parents</string>
+    <string name="sample_1">Hug families</string>
     <string name="sample_2">Kiss someone close to you</string>
     <string name="sample_3">Read for 30mins</string>
     <string name="sample_4">Exercise for 30mins</string>
+
+    <string name="cold_start_dlg_content">我好棒棒，每天都要比昨天更棒棒。\n\n點擊日期來完成每日的棒棒。</string>
+    <string name="first_launch_dlg_content">首次進入會給四個棒棒目標，分別關於家庭、親密關係、專業、健康，四個棒棒目標，你可以決定新增或修改這些棒棒目標。</string>
+    <string name="complete_today_target">你好棒棒，完成了今天的棒棒目標！</string>
 </resources>

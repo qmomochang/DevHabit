@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class ItemDAO {
 
+    private Context mContext;
+
     public static final String KEY_ID = "entry_id";
 
     public static final String TABLE_NAME = "habit_record";
@@ -55,6 +57,7 @@ public class ItemDAO {
 
     // 建構子，一般的應用都不需要修改
     public ItemDAO(Context context) {
+        mContext = context;
         db = HabitReaderDbHelper.getDatabase(context);
     }
 
@@ -206,10 +209,11 @@ public class ItemDAO {
     }
 
     public void sample() {
-        Item item = new Item("擁抱父母", "hug parents", "show love to parents", "", "", "2016-04-01", "");
-        Item item2 = new Item("親吻一個親密的人", "運動", "健康", "", "", "2016-04-01", "everyday");
-        Item item3 = new Item("閱讀30分鐘", "3", "r3", "", "", "2016-04-01", "every 2 day");
-        Item item4 = new Item("運動30分鐘", "4", "r4", "", "", "2016-04-01", "");
+
+        Item item = new Item(mContext.getResources().getString(R.string.sample_1), "hug parents", "show love to parents", "", "", "2016-04-01", "");
+        Item item2 = new Item(mContext.getResources().getString(R.string.sample_2), "運動", "健康", "", "", "2016-04-01", "everyday");
+        Item item3 = new Item(mContext.getResources().getString(R.string.sample_3), "3", "r3", "", "", "2016-04-01", "every 2 day");
+        Item item4 = new Item(mContext.getResources().getString(R.string.sample_4), "4", "r4", "", "", "2016-04-01", "");
 
         insert(item);
         insert(item2);

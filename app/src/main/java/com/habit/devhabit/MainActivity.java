@@ -1,5 +1,6 @@
 package com.habit.devhabit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,8 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -16,9 +16,14 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     public static final int SET_NEW_HABIT = 1;
@@ -78,16 +83,22 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.about) {
+            TextView tv = (TextView) ((Activity)mContext).getLayoutInflater().inflate(R.layout.about_dlg, null);
+            tv.setText(R.string.about_content);
+            tv.setMovementMethod(LinkMovementMethod.getInstance());
+
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle(R.string.about_title)
-                    .setMessage(R.string.about_content)
+                    //.setMessage(R.string.about_content)
+                    .setView(tv, 100, 100, 100, 100)
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //Toast.makeText(getApplicationContext(), R.string.gogo, Toast.LENGTH_SHORT).show();
+
                         }
                     })
                     .show();
+
             return true;
         }
 

@@ -2,9 +2,11 @@ package com.habit.devhabit;
 
 import android.content.Context;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -152,8 +154,12 @@ public class HabitView extends LinearLayout {
             Button btn = (Button) vg1.findViewById(R.id.date_btn);
 
             if (btn != null) {
+                Calendar c = Calendar.getInstance();
+
+
                 btn.setText(day_of_month);
                 btn.setTag(day_of_year);
+
                 if (mItem.getHash() != null && mItem.getHash().get(day_of_year) != null) {
                     //android.util.Log.v("MCLOG", "hash.get(" + day_of_year + ") = " + (int) mItem.getHash().get(day_of_year));
                     switch ((int) mItem.getHash().get(day_of_year)) {
@@ -170,6 +176,7 @@ public class HabitView extends LinearLayout {
                         case 2: // failed
                             btn.setTextColor(Color.parseColor("#FFFFFFFF"));
                             btn.getBackground().setColorFilter(Color.parseColor("#FFFF0000"), android.graphics.PorterDuff.Mode.DST_IN);
+
                             break;
 
                         default:
@@ -251,6 +258,17 @@ public class HabitView extends LinearLayout {
                             mAccomplishedDays++;
                             updateViewAccomplishedDays();
 
+                            Calendar c = Calendar.getInstance();
+                            if (dayOfYear.equals(Integer.toString(c.get(Calendar.DAY_OF_YEAR)))) {
+                                new AlertDialog.Builder(mContext)
+                                        .setTitle(R.string.app_name)
+                                        .setMessage(R.string.complete_today_target)
+                                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                            }
+                                        }).show();
+                            }
                             break;
 //                        case 1: // done, green
 //                            v.getBackground().setAlpha(255);

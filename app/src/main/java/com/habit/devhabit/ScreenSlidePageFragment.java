@@ -3,6 +3,7 @@ package com.habit.devhabit;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -14,9 +15,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -39,6 +43,8 @@ public class ScreenSlidePageFragment extends Fragment {
     static private ImageView mCameraImage;
 
     static private ViewGroup mViewGroup;
+
+    AlertDialog.Builder mFirstDlg;
 
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
@@ -145,6 +151,28 @@ public class ScreenSlidePageFragment extends Fragment {
 
         // need to be careful, initUi cannot find container if it's been put in the wrong position
         mController.initHabitViewUi(rootView);
+
+        if (mFirstDlg == null) {
+            mFirstDlg = new AlertDialog.Builder(mContext)
+                    .setTitle(R.string.app_name)
+                    .setMessage(R.string.cold_start_dlg_content)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle(R.string.app_name)
+                                    .setMessage(R.string.first_launch_dlg_content)
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    }).show();
+                        }
+                    });
+
+            mFirstDlg.show();
+        }
+
         return rootView;
     }
 
