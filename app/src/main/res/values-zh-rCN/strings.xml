@@ -44,4 +44,9 @@
     <string name="sunday">日</string>
 
     <string name="take_a_photo">拍個禮物照片吧</string>
+
+    <string name="sample_1">擁抱父母</string>
+    <string name="sample_2">親吻一個親密的人</string>
+    <string name="sample_3">閱讀30分鐘</string>
+    <string name="sample_4">運動30分鐘</string>
 </resources>

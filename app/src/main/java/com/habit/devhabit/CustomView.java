@@ -113,7 +113,7 @@ public class CustomView extends View {
                         } else {
                             ypts[i] = 0;
                         }
-                        android.util.Log.v("MCLOG", "before convert x = " + xpts[i] + ", ypts = " + ypts[i]);
+                        //android.util.Log.v("MCLOG", "before convert x = " + xpts[i] + ", ypts = " + ypts[i]);
                     }
 
                     convertYPTs(ypts, yBase);
@@ -124,7 +124,7 @@ public class CustomView extends View {
 //                            ypts[i] = 40;
 //                        }
 //                    }
-                    dumpXYpts();
+                    //dumpXYpts();
                     getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     invalidate();
                 }

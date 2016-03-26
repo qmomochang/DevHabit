@@ -206,10 +206,10 @@ public class ItemDAO {
     }
 
     public void sample() {
-        Item item = new Item("背單字", "ReadEng", "to improve my english", "", "", "2016-04-01", "");
-        Item item2 = new Item("慢跑", "運動", "健康", "", "", "2016-04-01", "everyday");
-        Item item3 = new Item("跳舞", "3", "r3", "", "", "2016-04-01", "every 2 day");
-        Item item4 = new Item("重訓", "4", "r4", "", "", "2016-04-01", "");
+        Item item = new Item("擁抱父母", "hug parents", "show love to parents", "", "", "2016-04-01", "");
+        Item item2 = new Item("親吻一個親密的人", "運動", "健康", "", "", "2016-04-01", "everyday");
+        Item item3 = new Item("閱讀30分鐘", "3", "r3", "", "", "2016-04-01", "every 2 day");
+        Item item4 = new Item("運動30分鐘", "4", "r4", "", "", "2016-04-01", "");
 
         insert(item);
         insert(item2);

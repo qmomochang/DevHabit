@@ -44,4 +44,9 @@
     <string name="sunday">Sun</string>
 
     <string name="take_a_photo">Take a gift photo</string>
+
+    <string name="sample_1">Hug parents</string>
+    <string name="sample_2">Kiss someone close to you</string>
+    <string name="sample_3">Read for 30mins</string>
+    <string name="sample_4">Exercise for 30mins</string>
 </resources>

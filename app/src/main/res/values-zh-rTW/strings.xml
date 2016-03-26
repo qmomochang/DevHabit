@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">我要好習慣</string>
+    <string name="app_name">我好棒棒</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">設定</string>
@@ -9,24 +9,24 @@
     <string name="max_connected_days_now">已完成日數 : </string>
     <string name="max_connected_days_ever">最久持續 : </string>
 
-    <string name="habit_form">開始一個新習慣</string>
-    <string name="habit_form_name">習慣名稱</string>
-    <string name="habit_form_description">描述習慣</string>
-    <string name="habit_form_reasons">為什麼要養成這個習慣</string>
+    <string name="habit_form">開始一個好棒棒目標</string>
+    <string name="habit_form_name">棒棒目標</string>
+    <string name="habit_form_description">描述棒棒</string>
+    <string name="habit_form_reasons">養成這個棒棒的好理由</string>
     <string name="habit_form_start_date">開始日期</string>
     <string name="habit_form_schedule">習慣排程 ex : 每天、每周 x 天</string>
 
-    <string name="hint_input_target_name">給習慣一個名字  ex : 慢跑</string>
-    <string name="hint_input_target_desc">描述一下這個習慣</string>
+    <string name="hint_input_target_name">給棒棒目標一個名字  ex : 慢跑</string>
+    <string name="hint_input_target_desc">描述一下這個棒棒</string>
     <string name="hint_input_target_reasons">想要養成這個習慣的原因  ex : 健康 </string>
-    <string name="hint_input_target_start_date">開始養成這個習慣的日期 ex: 2016-04-01</string>
-    <string name="hint_input_target_schedule">設定這個習慣的排程模式</string>
+    <string name="hint_input_target_start_date">開始養成這個棒棒的日期 ex: 2016-04-01</string>
+    <string name="hint_input_target_schedule">設定這個棒棒的排程模式</string>
 
     <string name="target_menu_modify">修改</string>
     <string name="target_menu_delete">刪除</string>
 
-    <string name="target_dialog_content_modified_title">內容已修改</string>
-    <string name="target_dialog_content_modified_content">內容改經被修改, 離開前先儲存 ?</string>
+    <string name="target_dialog_content_modified_title">棒棒內容已修改</string>
+    <string name="target_dialog_content_modified_content">棒棒內容改經被修改, 離開前先儲存 ?</string>
     <string name="save">儲存</string>
     <string name="leave_without_saving">不儲存</string>
     <string name="cancel">取消</string>
@@ -44,4 +44,10 @@
     <string name="sunday">日</string>
 
     <string name="take_a_photo">拍個禮物照片吧</string>
+
+    <string name="sample_1">擁抱父母</string>
+    <string name="sample_2">親吻一個親密的人</string>
+    <string name="sample_3">閱讀30分鐘</string>
+    <string name="sample_4">運動30分鐘</string>
+
 </resources>

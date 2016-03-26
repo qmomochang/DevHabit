@@ -155,7 +155,7 @@ public class HabitView extends LinearLayout {
                 btn.setText(day_of_month);
                 btn.setTag(day_of_year);
                 if (mItem.getHash() != null && mItem.getHash().get(day_of_year) != null) {
-                    android.util.Log.v("MCLOG", "hash.get(" + day_of_year + ") = " + (int) mItem.getHash().get(day_of_year));
+                    //android.util.Log.v("MCLOG", "hash.get(" + day_of_year + ") = " + (int) mItem.getHash().get(day_of_year));
                     switch ((int) mItem.getHash().get(day_of_year)) {
                         case 0: // nothing
                             btn.setTextColor(Color.parseColor("#FF000000"));
