@@ -120,16 +120,19 @@ public class HabitView extends LinearLayout {
 
         // setup date list
         Calendar c = Calendar.getInstance();
+        int startDay = c.get(Calendar.DAY_OF_WEEK);
+        int day_of_year = c.get(Calendar.DAY_OF_YEAR);
+        int day_of_month = c.get(Calendar.DAY_OF_MONTH);
+        int shiftDateToSunday = startDay;
 
         int[] arr = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7};
         for (int i = 0; i < 7; i++) {
-            int startDay = c.get(Calendar.DAY_OF_WEEK);
-            int shiftDateToSunday = startDay - 1;
+            c.set(Calendar.DAY_OF_YEAR, day_of_year + i);
+            String dayString = convertDayOfWeekToString(c.get(Calendar.DAY_OF_WEEK));
 
-            String dayString = convertDayOfWeekToString(startDay + i - shiftDateToSunday);
-            String day_of_month = Integer.toString(c.get(Calendar.DAY_OF_MONTH) + i - shiftDateToSunday);
-            String day_of_year = Integer.toString(c.get(Calendar.DAY_OF_YEAR) + i - shiftDateToSunday);
-            setupButtonDayText(container, arr[i], dayString, day_of_month, day_of_year);
+            String sday_of_month = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
+            String sday_of_year = Integer.toString(c.get(Calendar.DAY_OF_YEAR));
+            setupButtonDayText(container, arr[i], dayString, sday_of_month, sday_of_year);
             setupButtonListener(container, arr[i]);
         }
 

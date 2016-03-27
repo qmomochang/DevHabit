@@ -2,8 +2,10 @@ package com.habit.devhabit;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 
 
 import java.io.ByteArrayInputStream;
@@ -219,5 +221,22 @@ public class ItemDAO {
         insert(item2);
         insert(item3);
         insert(item4);
+
+         new AlertDialog.Builder(mContext)
+                 .setTitle(R.string.app_name)
+                 .setMessage(R.string.cold_start_dlg_content)
+                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+                         new AlertDialog.Builder(mContext)
+                                 .setTitle(R.string.app_name)
+                                 .setMessage(R.string.first_launch_dlg_content)
+                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                     }
+                                 }).show();
+                     }
+                 }).show();
     }
 }

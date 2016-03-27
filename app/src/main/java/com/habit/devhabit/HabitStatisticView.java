@@ -72,8 +72,10 @@ public class HabitStatisticView extends LinearLayout {
 
         Calendar c = Calendar.getInstance();
         int day_of_year = c.get(Calendar.DAY_OF_YEAR) - 29;
+        int start_day_of_week = c.get(Calendar.DAY_OF_WEEK);
+
         // return 30days
-        c.set(Calendar.DAY_OF_YEAR, day_of_year);
+        c.set(Calendar.DAY_OF_YEAR, day_of_year + 7 - start_day_of_week);
 
         SimpleDateFormat df = new SimpleDateFormat("MM/dd");
         int doy = 0;

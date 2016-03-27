@@ -150,27 +150,8 @@ public class ScreenSlidePageFragment extends Fragment {
         });
 
         // need to be careful, initUi cannot find container if it's been put in the wrong position
-        mController.initHabitViewUi(rootView);
-
-        if (mFirstDlg == null) {
-            mFirstDlg = new AlertDialog.Builder(mContext)
-                    .setTitle(R.string.app_name)
-                    .setMessage(R.string.cold_start_dlg_content)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            new AlertDialog.Builder(mContext)
-                                    .setTitle(R.string.app_name)
-                                    .setMessage(R.string.first_launch_dlg_content)
-                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    }).show();
-                        }
-                    });
-
-            mFirstDlg.show();
+        if (mController != null) {
+            mController.initHabitViewUi(rootView);
         }
 
         return rootView;
@@ -181,7 +162,9 @@ public class ScreenSlidePageFragment extends Fragment {
                 .inflate(R.layout.activity_main_page_3, container, false);
 
         // need to be careful, initUi cannot find container if it's been put in the wrong position
-        mController.initStatisticUi(rootView);
+        if (mController != null) {
+            mController.initStatisticUi(rootView);
+        }
         return rootView;
     }
 
@@ -203,6 +186,8 @@ public class ScreenSlidePageFragment extends Fragment {
     static public void addNewHabit() {
         ViewGroup habitContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_container);
         ViewGroup habitStatisticContainer = (ViewGroup) ((Activity) mContext).findViewById(R.id.habit_chart_container);
-        mController.addHabit(habitContainer, habitStatisticContainer);
+        if (mController != null) {
+            mController.addHabit(habitContainer, habitStatisticContainer);
+        }
     }
 }
