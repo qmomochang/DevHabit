@@ -122,12 +122,10 @@ public class HabitView extends LinearLayout {
         Calendar c = Calendar.getInstance();
         int startDay = c.get(Calendar.DAY_OF_WEEK);
         int day_of_year = c.get(Calendar.DAY_OF_YEAR);
-        int day_of_month = c.get(Calendar.DAY_OF_MONTH);
-        int shiftDateToSunday = startDay;
 
         int[] arr = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7};
         for (int i = 0; i < 7; i++) {
-            c.set(Calendar.DAY_OF_YEAR, day_of_year + i);
+            c.set(Calendar.DAY_OF_YEAR, day_of_year + i - 1);
             String dayString = convertDayOfWeekToString(c.get(Calendar.DAY_OF_WEEK));
 
             String sday_of_month = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
