@@ -53,4 +53,7 @@
     <string name="cold_start_dlg_content">我好棒棒，每天都要比昨天更棒棒。\n\n點擊日期來完成每日的棒棒。</string>
     <string name="first_launch_dlg_content">首次進入會給四個棒棒目標，分別關於家庭、親密關係、專業、健康，四個棒棒目標，你可以決定新增或修改這些棒棒目標。</string>
     <string name="complete_today_target">你好棒棒，完成了今天的棒棒目標！</string>
+
+    <string name="notification_title">好棒棒</string>
+    <string name="notification_content">親愛的，棒棒時間到囉！</string>
 </resources>

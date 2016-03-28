@@ -1,12 +1,16 @@
 package com.habit.devhabit;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 
 import android.support.v4.app.Fragment;
@@ -17,13 +21,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     public static final int SET_NEW_HABIT = 1;
@@ -65,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
         mController = new TargetController(this);
 
+        setupTimer();
+        //startService(new Intent(this, NotificationService.class).setAction(NotificationService.ACTION_SHOW_ALARM));
     }
 
     @Override
@@ -172,5 +183,42 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             return NUM_PAGES;
         }
+    }
+
+    private void setupTimer() {
+        Intent intent = new Intent(this, MainActivity.class);
+        //intent.setAction(ACTION_SHOW_ALARM);
+        PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        long firstTime = SystemClock.elapsedRealtime(); // 开机之后到现在的运行时间(包括睡眠时间)
+        long systemTime = System.currentTimeMillis();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+// 这里时区需要设置一下，不然会有8个小时的时间差
+        calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        calendar.set(Calendar.MINUTE, 32);
+        calendar.set(Calendar.HOUR_OF_DAY, 4);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+// 选择的定时时间
+        long selectTime = calendar.getTimeInMillis();
+// 如果当前时间大于设置的时间，那么就从第二天的设定时间开始
+        if(systemTime > selectTime) {
+            Toast.makeText(this,"设置的时间小于当前时间", Toast.LENGTH_SHORT).show();
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            selectTime = calendar.getTimeInMillis();
+        }
+// 计算现在时间到设定时间的时间差
+        long time = selectTime - systemTime;
+        firstTime += time;
+        long milliSecondsInADay = 24 * 60 * 60 * 1000;
+// 进行闹铃注册
+        AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        manager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                firstTime, milliSecondsInADay, sender);
+//        Log.i(TAG,"time ==== " + time +", selectTime ===== "
+//                + selectTime + ", systemTime ==== " + systemTime +", firstTime === " + firstTime);
+//        Toast.makeText(this,"设置重复闹铃成功! ", Toast.LENGTH_LONG).show();
     }
 }
